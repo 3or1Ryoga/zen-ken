@@ -27,10 +27,12 @@ export default function TrickGrid({ tricks }: TrickGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4 px-4 pb-24">
-      {tricks.map((trick) => (
-        <TrickCard key={trick.id} trick={trick} />
-      ))}
+    <div className="px-4 pb-24">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,160px))] gap-4 justify-center max-w-7xl mx-auto">
+        {tricks.map((trick) => (
+          <TrickCard key={trick.id} trick={trick} />
+        ))}
+      </div>
     </div>
   );
 }

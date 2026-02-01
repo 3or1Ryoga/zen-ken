@@ -26,20 +26,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/tricks/[slug]/page.js"
     ],
+    "/search/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/search/page.js"
+    ],
     "/post/new/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/post/new/page.js"
     ],
-    "/post/success/page": [
+    "/auth/signin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/post/success/page.js"
+      "static/chunks/app/auth/signin/page.js"
     ],
-    "/search/page": [
+    "/auth/signup/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/search/page.js"
+      "static/chunks/app/auth/signup/page.js"
     ]
   }
 }

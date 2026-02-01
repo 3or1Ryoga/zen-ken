@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { z } from "zod";
 import VideoEditor, { EditedVideoData } from "@/components/video/VideoEditor";
+import BottomNav from "@/components/layout/BottomNav";
 
 const newTrickSchema = z.object({
   nameJa: z.string().min(1, "技名（日本語）を入力してください"),
@@ -137,7 +138,7 @@ function NewTrickForm() {
 
   return (
     <>
-      <main className="min-h-screen bg-zen-bg pb-8">
+      <main className="min-h-screen bg-zen-bg pb-24">
         {/* Header */}
         <header className="sticky top-0 z-40 bg-zen-bg/95 backdrop-blur-sm border-b border-zen-border">
           <div className="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
@@ -172,7 +173,7 @@ function NewTrickForm() {
               <span className="text-zen-accent-red">貢献する</span>
             </h2>
             <p className="text-zen-text-secondary text-sm">
-              独自の流儀を共有し、仲間と技を磨き合おう。
+              技を共有し、仲間と技術を磨き合おう。
             </p>
           </div>
 
@@ -329,9 +330,9 @@ function NewTrickForm() {
                   </div>
                   {/* Edit info badges */}
                   <div className="absolute bottom-2 left-2 flex flex-wrap gap-1">
-                    {editedVideoData.blurRegions.length > 0 && (
-                      <span className="px-2 py-1 bg-black/70 text-white text-xs rounded-md">
-                        ぼかし: {editedVideoData.blurRegions.length}箇所
+                    {editedVideoData.mosaicEnabled && (
+                      <span className="px-2 py-1 bg-zen-accent-red text-white text-xs rounded-md font-medium">
+                        顔モザイク ON
                       </span>
                     )}
                     <span className="px-2 py-1 bg-black/70 text-white text-xs rounded-md">
@@ -360,7 +361,7 @@ function NewTrickForm() {
                 </div>
               )}
 
-              <div className="mt-3">
+              {/* <div className="mt-3">
                 <input
                   type="url"
                   value={formData.videoUrl}
@@ -371,7 +372,7 @@ function NewTrickForm() {
               </div>
               {errors.videoUrl && (
                 <p className="mt-1 text-sm text-zen-accent-red">{errors.videoUrl}</p>
-              )}
+              )} */}
             </div>
 
             {/* Submit Button */}
@@ -402,6 +403,8 @@ function NewTrickForm() {
           </p>
         </div>
       </main>
+
+      <BottomNav />
 
       {/* Video Editor Overlay */}
       {showVideoEditor && videoFile && (

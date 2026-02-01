@@ -52,9 +52,9 @@ const navItems = [
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill={active ? "currentColor" : "none"}
+        fill="none"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth={active ? "2.5" : "2"}
         strokeLinecap="round"
         strokeLinejoin="round"
       >

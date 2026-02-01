@@ -47,7 +47,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-zen-card shadow-card-hover border-t border-zen-border">
+        <div className="absolute top-full left-0 right-0 bg-zen-bg shadow-card-hover border-t border-zen-border">
           <nav className="max-w-md mx-auto py-4">
             <ul className="space-y-2 px-4">
               <li>

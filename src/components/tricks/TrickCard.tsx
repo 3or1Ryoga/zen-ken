@@ -12,7 +12,7 @@ export default function TrickCard({ trick }: TrickCardProps) {
 
   return (
     <Link href={`/tricks/${trick.slug}`} className="block">
-      <div className="card overflow-hidden group cursor-pointer">
+      <div className="card overflow-hidden group cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
         {/* Image Container */}
         <div className="relative aspect-[4/5] bg-gradient-to-b from-zen-bg to-zen-divider">
           {/* Placeholder Kendama Image */}
@@ -38,28 +38,6 @@ export default function TrickCard({ trick }: TrickCardProps) {
             <span className={`px-2 py-1 text-xs font-medium rounded-md ${difficultyColor}`}>
               {trick.difficultyLabel}
             </span>
-          </div>
-
-          {/* Bookmark Icon (placeholder) */}
-          <button
-            className="absolute top-3 right-3 p-1.5 bg-white/80 rounded-full hover:bg-white transition-colors"
-            onClick={(e) => {
-              e.preventDefault();
-              // TODO: Implement bookmark functionality
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-            </svg>
-          </button>
-
-          {/* Play Button */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="w-14 h-14 bg-zen-accent-red rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                <polygon points="9,6 19,12 9,18" />
-              </svg>
-            </div>
           </div>
 
           {/* Category Vertical Text */}

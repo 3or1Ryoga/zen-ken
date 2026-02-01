@@ -12,8 +12,8 @@ export default function CategoryTabs({
   onCategoryChange,
 }: CategoryTabsProps) {
   return (
-    <div className="overflow-x-auto no-scrollbar">
-      <div className="flex gap-2 px-4 py-3 min-w-max">
+    <div className="max-w-md mx-auto px-4 py-3">
+      <div className="flex flex-wrap gap-2">
         {CATEGORIES.map((cat) => (
           <button
             key={cat.value}

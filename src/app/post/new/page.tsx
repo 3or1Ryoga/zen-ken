@@ -159,7 +159,7 @@ function NewTrickForm() {
 
         <div className="max-w-md mx-auto px-4">
           {/* Motivation Section */}
-          <div className="mb-8">
+          <div className="mt-8 mb-8">
             <h2 className="heading-large text-zen-text-primary mb-2">
               競技者として
               <br />

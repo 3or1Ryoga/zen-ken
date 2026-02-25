@@ -397,10 +397,10 @@ function NewTrickForm() {
             </button>
           </form>
 
-          {/* Footer */}
+          {/* Footer 
           <p className="text-center text-xs text-zen-text-muted mt-8 tracking-widest">
-            TRADITIONAL ARTISAN SPIRIT
-          </p>
+            TRADITIONAL ARTISAN SPIRIT 
+          </p> */}
         </div>
       </main>
 

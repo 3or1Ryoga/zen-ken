@@ -199,7 +199,11 @@ export default function SignUpPage() {
 
         {/* Terms Notice */}
         <p className="text-xs text-zen-text-muted text-center mt-4">
-          登録することで、利用規約とプライバシーポリシーに同意したことになります。
+          登録することで、{" "}
+          <Link href="/privacy" className="underline hover:text-zen-text-secondary">
+            プライバシーポリシー
+          </Link>
+          {" "}に同意したことになります。
         </p>
 
         {/* Sign In Link */}

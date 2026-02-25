@@ -15,6 +15,7 @@ type Config struct {
 	AWSSecretKey   string
 	S3BucketName   string
 	Port           string
+	AllowedOrigin  string
 }
 
 func Load() *Config {
@@ -30,7 +31,8 @@ func Load() *Config {
 		AWSAccessKeyID: getEnv("AWS_ACCESS_KEY_ID", ""),
 		AWSSecretKey:   getEnv("AWS_SECRET_ACCESS_KEY", ""),
 		S3BucketName:   getEnv("S3_BUCKET_NAME", "zen-kendama"),
-		Port:           getEnv("PORT", "8080"),
+		Port:          getEnv("PORT", "8080"),
+		AllowedOrigin: getEnv("ALLOWED_ORIGIN", "http://localhost:3000"),
 	}
 
 	return cfg

@@ -25,7 +25,7 @@ func main() {
 	videoHandler := handlers.NewVideoHandler(db, s3Service)
 
 	r := gin.Default()
-	r.Use(middleware.CORS())
+	r.Use(middleware.CORS(cfg.AllowedOrigin))
 
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "ok"})

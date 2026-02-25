@@ -158,13 +158,6 @@ function NewTrickForm() {
         </header>
 
         <div className="max-w-md mx-auto px-4">
-          {/* Stats Banner */}
-          <div className="my-6 bg-gradient-to-r from-zen-accent-gold/20 to-zen-accent-wood/10 rounded-xl p-4 text-center">
-            <p className="text-sm text-zen-text-secondary">
-              今月 <span className="font-bold text-zen-accent-wood text-lg">142</span> 個の技が披露されました
-            </p>
-          </div>
-
           {/* Motivation Section */}
           <div className="mb-8">
             <h2 className="heading-large text-zen-text-primary mb-2">

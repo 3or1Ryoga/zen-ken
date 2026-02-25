@@ -1,4 +1,4 @@
-// File: /Users/RyogaSakai/dev/zen-ken/src/app/api/auth/[...nextauth]/route.ts
+// File: /Users/ryogasakai/dev/kendama/zen-ken/src/app/api/auth/[...nextauth]/route.ts
 import * as entry from '../../../../../../src/app/api/auth/[...nextauth]/route.js'
 import type { NextRequest } from 'next/server.js'
 

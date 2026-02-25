@@ -31,11 +31,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/search/page.js"
     ],
-    "/post/new/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/post/new/page.js"
-    ],
     "/auth/signin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -24,19 +27,49 @@ export default function SignUpPage() {
       return;
     }
 
-    if (formData.password.length < 6) {
-      setError("パスワードは6文字以上で入力してください");
+    if (formData.password.length < 8) {
+      setError("パスワードは8文字以上で入力してください");
       return;
     }
 
     setIsLoading(true);
 
-    // Simulate API call (Week 1 mock)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Go API にユーザー登録
+    const res = await fetch(`${API_URL}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
+      }),
+    });
 
-    // In Week 1, just redirect to signin
-    // In Week 2, this will connect to Go backend
-    router.push("/auth/signin?registered=true");
+    const json = await res.json();
+
+    if (!json.success) {
+      setError(
+        json.error === "email already registered"
+          ? "このメールアドレスはすでに登録されています"
+          : "登録に失敗しました。もう一度お試しください。"
+      );
+      setIsLoading(false);
+      return;
+    }
+
+    // 登録成功後、そのままログイン
+    const result = await signIn("credentials", {
+      email: formData.email,
+      password: formData.password,
+      redirect: false,
+    });
+
+    if (result?.ok) {
+      router.push("/");
+      router.refresh();
+    } else {
+      router.push("/auth/signin?registered=true");
+    }
   };
 
   return (
@@ -124,9 +157,9 @@ export default function SignUpPage() {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               required
-              minLength={6}
+              minLength={8}
               className="w-full px-4 py-3 bg-zen-card border border-zen-border rounded-xl text-zen-text-primary placeholder:text-zen-text-muted focus:outline-none focus:ring-2 focus:ring-zen-accent-wood/50 focus:border-zen-accent-wood transition-all"
-              placeholder="••••••••"
+              placeholder="••••••••（8文字以上）"
             />
           </div>
 

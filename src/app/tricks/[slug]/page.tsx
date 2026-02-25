@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getTrickBySlug, getAllTricks } from "@/lib/tricks";
+import { getTrickBySlug } from "@/lib/tricks";
 import { DIFFICULTY_COLORS } from "@/types";
 import VideoGrid from "@/components/tricks/VideoGrid";
 
@@ -10,16 +10,9 @@ interface TrickDetailPageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  const tricks = getAllTricks();
-  return tricks.map((trick) => ({
-    slug: trick.slug,
-  }));
-}
-
 export async function generateMetadata({ params }: TrickDetailPageProps) {
   const { slug } = await params;
-  const trick = getTrickBySlug(slug);
+  const trick = await getTrickBySlug(slug);
 
   if (!trick) {
     return {
@@ -39,7 +32,7 @@ export async function generateMetadata({ params }: TrickDetailPageProps) {
 
 export default async function TrickDetailPage({ params }: TrickDetailPageProps) {
   const { slug } = await params;
-  const trick = getTrickBySlug(slug);
+  const trick = await getTrickBySlug(slug);
 
   if (!trick) {
     notFound();

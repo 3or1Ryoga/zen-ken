@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/tricks/big-cup":{},"/tricks/small-cup":{},"/tricks/base-cup":{},"/tricks/spike":{},"/tricks/airplane":{},"/tricks/lighthouse":{},"/tricks/swing-in":{},"/tricks/around-the-world":{},"/tricks/orbit":{},"/tricks/lunar":{},"/tricks/falling-base-cup":{},"/tricks/bird":{},"/tricks/ken-flip":{},"/tricks/jugg":{},"/tricks/stuntplane":{},"/tricks/one-turn-lighthouse":{},"/tricks/whirlwind":{},"/tricks/downspike":{},"/tricks/string-grab":{},"/tricks/spacewalk":{},"/tricks/inward-lunar":{},"/tricks/handstick":{},"/tricks/swirl":{},"/tricks/instas":{},"/tricks/around-europe":{},"/tricks/underbird":{},"/tricks/border-balance":{},"/tricks/fast-hands":{},"/tricks/butterfly":{},"/tricks/triple-ken-flip":{}},"dynamicRoutes":{"/tricks/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/tricks/[slug]","routeRegex":"^\\/tricks\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"4ea0b18396e4d566da099bb4d5f30d2e","previewModeSigningKey":"d13b8e59f5b35c63cb0f83f27f562b8e51f6b24f0e25534fe3ddd9cf9f72a9d0","previewModeEncryptionKey":"2930601564d89b8934449e4adb5a93434415a5aabc761882af370e296a7c93fa"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "6eb71ecbbc80e6b080e8ce1c80fa43b4",
+    "previewModeSigningKey": "8fde1a3a54fd90bf6e8111aeac91fedd398159727769f0ce34ac68f2da19a520",
+    "previewModeEncryptionKey": "89746af424806bf33f4d3b7c404f672cd37be595d1ddbaf66815dadbdbfa345b"
+  }
+}

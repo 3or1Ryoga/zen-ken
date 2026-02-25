@@ -1,6 +1,8 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+const GO_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -10,31 +12,37 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Mock authentication for Week 1
-        // In Week 2, this will connect to Go backend
-        if (
-          credentials?.email === "test@example.com" &&
-          credentials?.password === "password"
-        ) {
-          return {
-            id: "1",
-            email: credentials.email,
-            name: "Test User",
-            image: null,
-          };
+        if (!credentials?.email || !credentials?.password) {
+          return null;
         }
 
-        // Demo user for easier testing
-        if (credentials?.email && credentials?.password === "demo") {
-          return {
-            id: "demo",
+        const res = await fetch(`${GO_API_URL}/api/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
             email: credentials.email,
-            name: credentials.email.split("@")[0],
-            image: null,
-          };
+            password: credentials.password,
+          }),
+        });
+
+        if (!res.ok) {
+          return null;
         }
 
-        return null;
+        const json = await res.json();
+        if (!json.success) {
+          return null;
+        }
+
+        const { user, token } = json.data;
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.username,
+          image: user.avatarUrl ?? null,
+          accessToken: token,
+        };
       },
     }),
   ],
@@ -48,12 +56,14 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.accessToken = (user as any).accessToken;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         (session.user as any).id = token.id;
+        (session.user as any).accessToken = token.accessToken;
       }
       return session;
     },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getAllTricks, searchTricks } from "@/lib/tricks";
 import { Trick } from "@/types";
@@ -38,13 +38,24 @@ const getCategoryBadge = (category: string) => {
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
-  const allTricks = getAllTricks();
+  const [allTricks, setAllTricks] = useState<Trick[]>([]);
+  const [searchResults, setSearchResults] = useState<Trick[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const searchResults = useMemo(() => {
-    if (query.trim() === "") {
-      return [];
+  useEffect(() => {
+    getAllTricks().then(setAllTricks);
+  }, []);
+
+  useEffect(() => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
     }
-    return searchTricks(query);
+    setIsSearching(true);
+    searchTricks(query).then((results) => {
+      setSearchResults(results);
+      setIsSearching(false);
+    });
   }, [query]);
 
   const recentTricks = allTricks.slice(0, 4);
@@ -104,7 +115,9 @@ export default function SearchPage() {
         {query.trim() !== "" ? (
           <>
             <p className="text-sm text-zen-text-secondary mb-3">
-              {searchResults.length > 0
+              {isSearching
+                ? "検索中..."
+                : searchResults.length > 0
                 ? `${searchResults.length}件の結果`
                 : "該当する技が見つかりません"}
             </p>
@@ -113,7 +126,7 @@ export default function SearchPage() {
                 <SearchResultItem key={trick.id} trick={trick} />
               ))}
             </div>
-            {searchResults.length === 0 && (
+            {!isSearching && searchResults.length === 0 && (
               <div className="mt-8 text-center">
                 <p className="text-zen-text-secondary mb-4">
                   お探しの技が見つかりませんか？

@@ -56,15 +56,6 @@ function SignInForm() {
           </p>
         </div>
 
-        {/* Demo Notice */}
-        <div className="bg-zen-accent-gold/10 border border-zen-accent-gold/30 rounded-xl p-4 mb-6">
-          <p className="text-sm text-zen-accent-wood">
-            <strong>デモ用アカウント:</strong><br />
-            メール: test@example.com<br />
-            パスワード: password
-          </p>
-        </div>
-
         {/* Google Login Button (Coming Soon) */}
         <button
           disabled

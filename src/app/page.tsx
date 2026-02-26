@@ -1,29 +1,10 @@
-"use client";
-
-import { useState, useEffect, useMemo } from "react";
 import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
-import CategoryTabs from "@/components/tricks/CategoryTabs";
-import TrickGrid from "@/components/tricks/TrickGrid";
+import TricksSection from "@/components/tricks/TricksSection";
 import { getAllTricks } from "@/lib/tricks";
-import { Trick, Category } from "@/types";
 
-export default function HomePage() {
-  const [allTricks, setAllTricks] = useState<Trick[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState<Category | "all">("all");
-
-  useEffect(() => {
-    getAllTricks().then((data) => {
-      setAllTricks(data);
-      setLoading(false);
-    });
-  }, []);
-
-  const tricks = useMemo(() => {
-    if (activeCategory === "all") return allTricks;
-    return allTricks.filter((t) => t.category === activeCategory);
-  }, [allTricks, activeCategory]);
+export default async function HomePage() {
+  const allTricks = await getAllTricks();
 
   return (
     <main className="min-h-screen bg-zen-bg">
@@ -36,28 +17,12 @@ export default function HomePage() {
             けん玉技辞典
           </h1>
           <p className="text-sm text-zen-text-secondary mt-4">
-            {loading ? "読み込み中..." : `${allTricks.length}種類の技を収録`}{" "}
-            <br />
+            {allTricks.length}種類の技を収録 <br />
             みんなで作るけん玉技辞典
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <CategoryTabs
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-        />
-
-        {/* Trick Grid */}
-        <div className="mt-4">
-          {loading ? (
-            <div className="flex justify-center py-16">
-              <div className="text-zen-text-muted text-sm">読み込み中...</div>
-            </div>
-          ) : (
-            <TrickGrid tricks={tricks} />
-          )}
-        </div>
+        <TricksSection allTricks={allTricks} />
       </div>
 
       <BottomNav />

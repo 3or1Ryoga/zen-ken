@@ -17,7 +17,7 @@
   ],
   "author": "",
   "license": "ISC",
-  "description": "Zen Kendama - 剣玉技辞典",
+  "description": "Zen Kendama - けん玉技辞典",
   "dependencies": {
     "next": "^15.5.11",
     "next-auth": "^4.24.13",

@@ -22,9 +22,9 @@ export async function generateMetadata({ params }: TrickDetailPageProps) {
 
   return {
     title: `${trick.nameJa} (${trick.nameEn}) - Zen Kendama`,
-    description: `${trick.nameJa}の剣玉技を学ぼう。複数の実演動画で詳しく解説。難易度: ${trick.difficultyLabel}`,
+    description: `${trick.nameJa}のけん玉技を学ぼう。複数の実演動画で詳しく解説。難易度: ${trick.difficultyLabel}`,
     openGraph: {
-      title: `${trick.nameJa} - 剣玉技辞典`,
+      title: `${trick.nameJa} - けん玉技辞典`,
       description: `${trick.videos.length}人の実演動画を見る`,
     },
   };

@@ -52,7 +52,7 @@ function SignInForm() {
             </h1>
           </Link>
           <p className="text-sm text-zen-text-secondary mt-2">
-            剣玉技辞典にログイン
+            けん玉技辞典にログイン
           </p>
         </div>
 

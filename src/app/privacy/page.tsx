@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー - Zen Kendama",
-  description: "Zen Kendama（剣玉技辞典）のプライバシーポリシーです。",
+  description: "Zen Kendama（けん玉技辞典）のプライバシーポリシーです。",
 };
 
 export default function PrivacyPage() {
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
         </p>
 
         <p className="text-sm leading-relaxed text-zen-text-secondary">
-          Zen Kendama（剣玉技辞典）（以下「本サービス」）は、ユーザーのプライバシーを尊重し、
+          Zen Kendama（けん玉技辞典）（以下「本サービス」）は、ユーザーのプライバシーを尊重し、
           個人情報の保護に努めます。本ポリシーは、本サービスにおける個人情報の取り扱いについて説明します。
         </p>
 

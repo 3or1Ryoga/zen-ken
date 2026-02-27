@@ -2,7 +2,19 @@ import { Trick, Category } from "@/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
+function normalizeVideo(raw: Record<string, unknown>): Trick["videos"][number] {
+  const user = raw.user as Record<string, unknown> | undefined;
+  return {
+    ...(raw as unknown as Trick["videos"][number]),
+    username: (raw.username as string) ?? user?.username as string ?? "anonymous",
+    userAvatar: (raw.userAvatar as string) ?? user?.avatarUrl as string ?? "",
+    thumbnailUrl: (raw.thumbnailUrl as string) ?? "",
+    comment: raw.comment as string | undefined,
+  };
+}
+
 function normalizeTrick(raw: Record<string, unknown>): Trick {
+  const rawVideos = (raw.videos as Record<string, unknown>[]) ?? [];
   return {
     ...(raw as unknown as Trick),
     subcategory: (raw.subcategory as string) ?? "",
@@ -11,7 +23,7 @@ function normalizeTrick(raw: Record<string, unknown>): Trick {
     thumbnailUrl: (raw.thumbnailUrl as string) ?? "",
     iconUrl: (raw.iconUrl as string) ?? "",
     tags: (raw.tags as string[]) ?? [],
-    videos: (raw.videos as Trick["videos"]) ?? [],
+    videos: rawVideos.map(normalizeVideo),
   };
 }
 

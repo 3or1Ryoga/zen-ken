@@ -45,40 +45,61 @@ export default function VideoGrid({ videos, trickName }: VideoGridProps) {
         ))}
       </div>
 
-      {/* Video Modal */}
+      {/* Video Modal - TikTok style fullscreen */}
       {selectedVideo && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
           onClick={() => setSelectedVideo(null)}
         >
+          {/* Close button */}
+          <button
+            onClick={() => setSelectedVideo(null)}
+            className="absolute top-4 right-4 z-10 p-2 bg-black/50 rounded-full"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+
+          {/* Video area - portrait 9:16 */}
           <div
-            className="bg-zen-card rounded-xl max-w-lg w-full max-h-[90vh] overflow-hidden"
+            className="relative w-full h-full max-w-sm mx-auto flex items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-4 border-b border-zen-border flex items-center justify-between">
-              <div>
-                <p className="font-medium text-zen-text-primary">@{selectedVideo.username}</p>
-                <p className="text-sm text-zen-text-secondary">{trickName}</p>
-              </div>
-              <button
-                onClick={() => setSelectedVideo(null)}
-                className="p-2 hover:bg-zen-bg rounded-lg transition-colors"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
+            <div className="relative w-full aspect-[9/16] bg-zinc-900">
+              {/* Placeholder - replace with actual video player in production */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <svg viewBox="0 0 80 130" className="w-20 h-28 opacity-20">
+                  <circle cx="40" cy="25" r="20" fill="#E8DED0"/>
+                  <path d="M40 45 Q30 60 35 80" stroke="#8B7355" strokeWidth="1.5" fill="none"/>
+                  <ellipse cx="40" cy="85" rx="12" ry="8" fill="#D4C4B0"/>
+                  <rect x="35" y="85" width="10" height="35" rx="2" fill="#D4C4B0"/>
                 </svg>
-              </button>
-            </div>
-            <div className="aspect-video bg-black flex items-center justify-center">
-              <p className="text-white text-sm">動画プレビュー</p>
-              {/* In production, embed the actual video here */}
-            </div>
-            {selectedVideo.comment && (
-              <div className="p-4">
-                <p className="text-zen-text-secondary text-sm">{selectedVideo.comment}</p>
               </div>
-            )}
+
+              {/* Play icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                    <polygon points="9,6 19,12 9,18" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* User info overlay - bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-white font-semibold text-sm">@{selectedVideo.username}</p>
+                <p className="text-white/70 text-xs mt-0.5">{trickName}</p>
+                {selectedVideo.comment && (
+                  <p className="text-white/80 text-xs mt-2">{selectedVideo.comment}</p>
+                )}
+                <div className="flex items-center gap-3 mt-2">
+                  <span className="text-white/60 text-xs">{selectedVideo.views.toLocaleString()} 再生</span>
+                  <span className="text-white/60 text-xs">♡ {selectedVideo.likes}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

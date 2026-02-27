@@ -53,7 +53,7 @@ export default async function TrickDetailPage({ params }: TrickDetailPageProps) 
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </Link>
-          <span className="text-sm text-zen-text-secondary">比較台帳</span>
+          <span className="text-sm text-zen-text-secondary">技一覧</span>
         </div>
       </header>
 
@@ -105,7 +105,7 @@ export default async function TrickDetailPage({ params }: TrickDetailPageProps) 
       <div className="fixed bottom-0 left-0 right-0 bg-zen-card border-t border-zen-border safe-area-inset-bottom">
         <div className="max-w-md mx-auto px-4 py-3">
           <Link
-            href={`/post/new?trick=${trick.slug}`}
+            href={`/post/new?trick=${trick.slug}&nameJa=${encodeURIComponent(trick.nameJa)}&nameEn=${encodeURIComponent(trick.nameEn)}&category=${encodeURIComponent(trick.category)}&difficulty=${trick.difficulty}`}
             className="btn-primary w-full flex items-center justify-center gap-2"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

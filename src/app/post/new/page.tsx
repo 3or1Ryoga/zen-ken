@@ -36,10 +36,10 @@ function NewTrickForm() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
-    nameJa: "",
-    nameEn: "",
-    category: "",
-    difficulty: 2,
+    nameJa: searchParams.get("nameJa") || "",
+    nameEn: searchParams.get("nameEn") || "",
+    category: searchParams.get("category") || "",
+    difficulty: Math.min(Number(searchParams.get("difficulty")) || 2, 4),
     videoUrl: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
